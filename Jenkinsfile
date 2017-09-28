@@ -11,9 +11,9 @@ node () {
       // **       in the global configuration.           
       mvnHome = tool 'M3'
       
-      sh 'git rev-parse HEAD > commit'
-      commitId = readFile('commit').trim()
-      sh "echo my commitid ${commitId}"
+      // sh 'git rev-parse HEAD > commit'
+      // commitId = readFile('commit').trim()
+      // sh "echo my commitid ${commitId}"
 
    }
    stage('Build') {
