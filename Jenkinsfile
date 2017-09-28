@@ -5,15 +5,18 @@ node () {
     
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git 'git@github.com:Ile2/struts2-showcase-demo.git'
+      // git 'git@github.com:CMYanko/struts2-showcase-demo.git'
+      checkout scm
+      
+      
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool 'M3'
       
-      sh 'git rev-parse HEAD > commit'
-      commitId = readFile('commit').trim()
-      sh "echo my commitid ${commitId}"
+      // sh 'git rev-parse HEAD > commit'
+      // commitId = readFile('commit').trim()
+      // sh "echo my commitid ${commitId}"
 
    }
    stage('Build') {
