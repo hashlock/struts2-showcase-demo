@@ -5,7 +5,7 @@ node () {
     
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git 'git@github.com:Ile2/struts2-showcase-demo.git'
+      git 'git@github.com:CMYanko/struts2-showcase-demo.git'
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
