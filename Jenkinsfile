@@ -23,7 +23,7 @@ node () {
       // Run the maven build
       try{
         if (isUnix()) {
-           sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore -f src/apps/rest-showcase/pom.xml -s /home/ubuntu/settings.xml clean package -U"
+           sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore -f src/apps/rest-showcase/pom.xml -s /home/ubuntu/settings.xml clean package deploy -U"
         } else {
            bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
         }
