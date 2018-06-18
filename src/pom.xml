@@ -53,10 +53,14 @@
     </ciManagement>
 
     <distributionManagement>
-        <site>
-            <id>apache-site</id>
-            <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/struts/content/release/2.3.x/</url>
-        </site>
+       <snapshotRepository>
+    <id>nexus</id>
+    <url>http://localhost:8081/repository/development/</url>
+    </snapshotRepository>
+     <repository>
+    <id>nexus1</id>
+    <url>http://localhost:8081/repository/development/</url>
+    </repository>
     </distributionManagement>
 
     <modules>
