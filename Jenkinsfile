@@ -5,22 +5,25 @@ node () {
     
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git 'git@github.com:Ile2/struts2-showcase-demo.git'
+      // git 'git@github.com:CMYanko/struts2-showcase-demo.git'
+      checkout scm
+      
+      
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool 'M3'
       
-      sh 'git rev-parse HEAD > commit'
-      commitId = readFile('commit').trim()
-      sh "echo my commitid ${commitId}"
+      // sh 'git rev-parse HEAD > commit'
+      // commitId = readFile('commit').trim()
+      // sh "echo my commitid ${commitId}"
 
    }
    stage('Build') {
       // Run the maven build
       try{
         if (isUnix()) {
-           sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore -f src/apps/rest-showcase/pom.xml clean package -U"
+           sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore -f src/apps/rest-showcase/pom.xml -s /home/ubuntu/settings.xml clean package deploy -U"
         } else {
            bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
         }
@@ -47,8 +50,8 @@ node () {
    stage('Lifecycle Evaluation'){
     // postGitHub commitId, 'pending', 'analysis', 'Nexus Lifecycle Analysis is running'
 
-      def policyEvaluationResult = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: '1422', iqStage: 'stage-release', jobCredentialsId: ''
-
+      /* def policyEvaluationResult = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: '1422', iqStage: 'stage-release', jobCredentialsId: ''
+*/
     /*  if (currentBuild.result == 'FAILURE'){
         postGitHub commitId, 'failure', 'analysis', 'Nexus Lifecycle Analysis failed',"${policyEvaluationResult.applicationCompositionReportUrl}"
         return
